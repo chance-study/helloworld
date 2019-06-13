@@ -1,0 +1,4 @@
+rootProject.name = 'root-module'
+
+include ':sub-module1', ':sub-module2'
+project(':sub-module2').projectDir = new File(settingsDir, '../sub-module2')

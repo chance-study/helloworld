@@ -1,0 +1,54 @@
+group 'org.chance'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+//apply plugin:'templates'
+
+// 使用自定义插件
+//apply plugin: 'plugin.test'
+
+sourceCompatibility = 1.8
+
+ext{
+
+}
+
+buildscript {
+    repositories {
+        maven {
+            url 'http://dl.bintray.com/cjstehno/public'
+        }
+//        maven {
+//            url uri('../repo')
+//        }
+    }
+    dependencies {
+//        classpath 'gradle-templates:gradle-templates:1.5'
+//        classpath 'gradle-plugin:gradle-plugin:1.0'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':sub-module1')
+    compile("cglib:cglib:3.2.2")
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+
+//pluginExt {
+//    param1 = 'app param1'
+//    param2 = 'app param2'
+//    nestExt {
+//        nestParam1 = 'app nestParam1'
+//        nestParam2 = 'app nestParam2'
+//    }
+//}
+
+//指定编译的编码
+tasks.withType(JavaCompile){
+    options.encoding = "UTF-8"
+}
