@@ -1,0 +1,40 @@
+plugins {
+    // Gradle 3.4+ 使用java-library插件替换java插件
+    id 'java-library'
+}
+
+apply from: '../deploy.gradle'
+
+group = 'org.chance'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+
+    mavenLocal()
+    maven {
+        url "../../../repo"
+    }
+
+    mavenCentral()
+
+}
+
+/**
+ * api和implementation两种依赖的不同点在于：它们声明的依赖其他模块是否能使用。
+ *
+ * api：当其他模块依赖于此模块时，此模块使用api声明的依赖包是可以被其他模块使用
+ * implementation：当其他模块依赖此模块时，此模块使用implementation声明的依赖包只限于模块内部使用，不允许其他模块使用。
+ */
+dependencies {
+    api('org.chance:strategy-spring-boot-autoconfigure:0.0.1-SNAPSHOT')
+}
+
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'ScalaFilebeat',
+                'Implementation-Version': version
+    }
+}
+
+

@@ -1,0 +1,45 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.6.RELEASE' apply false
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+apply from: './deploy.gradle'
+
+group = 'org.chance'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+// 单独使用Spring Boot的依赖管理
+dependencyManagement {
+    imports {
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+// 跳过javadoc
+//javadoc.enabled = false
+
+dependencies {
+    implementation 'org.apache.commons:commons-lang3:3.9'
+    compileOnly 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.apache.commons:commons-text:1.7'
+}
+
+

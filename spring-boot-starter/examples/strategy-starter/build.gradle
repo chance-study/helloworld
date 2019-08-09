@@ -1,0 +1,38 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+group = 'org.chance'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+
+    maven{
+        url "../../../../repo"
+    }
+
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.chance:strategy-spring-boot-starter:0.0.1-SNAPSHOT'
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    // lombok配置
+    // idea中如果出现单元测试有问题
+    // 需要设置 File | Settings | Build, Execution, Deployment | Compiler | Annotation Processors 
+    
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.8'
+    testCompileOnly 'org.projectlombok:lombok:1.18.8'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+
+
+}

@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.chance'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+allprojects {
+//    apply plugin:'templates'
+    wrapper {
+        /* 使用5.4.1版本在idea中会导入项目报错，命令行构建项目没有问题 */
+        gradleVersion='5.4.1'
+    }
+
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+        options.encoding = 'UTF-8'
+    }
+    
+    //指定编译的编码
+    tasks.withType(JavaCompile){
+        options.encoding = "UTF-8"
+    }
+
+    // Gradle解决JavaDoc中文乱码问题
+    javadoc {
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            author true
+            version true
+            title "文档大标题"
+        }
+    }
+}
