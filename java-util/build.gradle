@@ -32,6 +32,9 @@ repositories {
     mavenCentral()
 }
 
+// 打印日志
+logger.quiet('An info log message which is always logged.')
+
 // 跳过javadoc
 //javadoc.enabled = false
 
