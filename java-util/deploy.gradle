@@ -124,7 +124,13 @@ javadoc {
         title "文档大标题"
     }
     // javadoc -tag date:a:"date" 自定义tag 可以排除 错误：未知标记： date
+    // 目前多个tag后面配置的会覆盖掉上面的
+    // 文件参考 $build/tmp/javadoc/javadoc.options
+    options.addStringOption("tag", "email:a:\"邮箱\"")
     options.addStringOption("tag", "date:a:\"时间\"")
+
+    // doclint的这种严格检查，默认情况下是打开的，添加-Xdoclint:none便可关闭检查。
+    options.addStringOption('Xdoclint:none', '-quiet')
 //    Gradle解决JavaDoc中文乱码问题
 //    options.addStringOption("encoding", "UTF-8")
 //    options.addStringOption("charset", "UTF-8")
