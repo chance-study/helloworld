@@ -77,8 +77,8 @@ publishing {
 //            def releasesRepoUrl = "$buildDir/repos/releases"
 //            def snapshotsRepoUrl = "$buildDir/repos/snapshots"
 
-            def releasesRepoUrl = "../../../repo"
-            def snapshotsRepoUrl = "../../../repo"
+            def releasesRepoUrl = localMavenRepo
+            def snapshotsRepoUrl = localMavenRepo
 
             url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
         }

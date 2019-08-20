@@ -9,10 +9,12 @@ group = 'org.chance'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+
 repositories {
 
     maven{
-        url "../../../../repo"
+        url localMavenRepo
     }
 
     mavenCentral()

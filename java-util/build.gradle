@@ -39,6 +39,7 @@ logger.quiet('An info log message which is always logged.')
 //javadoc.enabled = false
 
 dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.apache.commons:commons-lang3:3.9'
     compileOnly 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'

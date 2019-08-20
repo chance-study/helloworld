@@ -1,19 +1,47 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.6.RELEASE' apply false
+    id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
 group 'org.chance'
 version '1.0-SNAPSHOT'
-
-apply plugin: 'java'
 
 // 指定编译编译.java文件的jdk版本
 sourceCompatibility = 1.8
 // 确保class文件与targetCompatibility指定版本，或者更新的java虚拟机兼容
 targetCompatibility = 1.8
 
+// 指定上传的路径
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+
 repositories {
+    maven{
+        url(localMavenRepo)
+    }
     mavenCentral()
 }
 
+// 单独使用Spring Boot的依赖管理
+dependencyManagement {
+    imports {
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
+}
+
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+
+    implementation 'org.chance:java-util:0.0.1-SNAPSHOT'
+    implementation 'org.springframework.boot:spring-boot-starter'
+
+    annotationProcessor 'org.projectlombok:lombok:1.18.8'
+    compileOnly 'org.projectlombok:lombok:1.18.8'
+//    testAnnotationProcessor 'org.projectlombok:lombok:1.18.8'
+//    testCompileOnly 'org.projectlombok:lombok:1.18.8'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 
 //指定编译的编码
