@@ -12,11 +12,11 @@ sourceCompatibility = '1.8'
 def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
 
 repositories {
-
-    maven{
-        url localMavenRepo
-    }
-
+    // 本地maven仓库
+    mavenLocal()
+    maven { url localMavenRepo }
+    // 阿里的源
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
 }
 

@@ -28,7 +28,16 @@ dependencyManagement {
     }
 }
 
+// 指定上传的路径
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+logger.quiet(localMavenRepo)
+
 repositories {
+    // 本地maven仓库
+    mavenLocal()
+    maven { url localMavenRepo }
+    // 阿里的源
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
 }
 
