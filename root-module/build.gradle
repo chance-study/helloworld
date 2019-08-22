@@ -12,6 +12,10 @@ allprojects {
 
 subprojects {
     //Add common configuration here
+    wrapper {
+        /* 使用5.4.1版本在idea中会导入项目报错，命令行构建项目没有问题 */
+        gradleVersion='5.4.1'
+    }
 }
 
 project(":sub-module1") {
@@ -29,10 +33,15 @@ buildscript {
     }
 }
 
+// 指定上传的路径
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+
 repositories {
-    //  开源中国的Maven库
-//  maven{ url 'http://maven.oschina.net/content/groups/public/'}
-    jcenter()
+    // 本地maven仓库
+    mavenLocal()
+    maven { url localMavenRepo }
+    // 阿里的源
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
 }
 

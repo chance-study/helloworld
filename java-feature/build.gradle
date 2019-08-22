@@ -17,9 +17,11 @@ targetCompatibility = 1.8
 def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
 
 repositories {
-    maven{
-        url(localMavenRepo)
-    }
+    // 本地maven仓库
+    mavenLocal()
+    maven { url localMavenRepo }
+    // 阿里的源
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
 }
 
@@ -47,4 +49,9 @@ dependencies {
 //指定编译的编码
 tasks.withType(JavaCompile){
     options.encoding = "UTF-8"
+}
+
+wrapper {
+    /* 使用5.4.1版本在idea中会导入项目报错，命令行构建项目没有问题 */
+    gradleVersion='5.4.1'
 }

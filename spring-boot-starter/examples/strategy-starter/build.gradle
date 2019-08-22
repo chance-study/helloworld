@@ -34,7 +34,10 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.8'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    
+}
 
-
-
+wrapper {
+    /* 使用5.4.1版本在idea中会导入项目报错，命令行构建项目没有问题 */
+    gradleVersion='5.4.1'
 }

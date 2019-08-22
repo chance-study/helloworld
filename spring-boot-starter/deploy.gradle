@@ -114,23 +114,27 @@ javadoc {
 
     // Gradle解决JavaDoc中文乱码问题
     options {
-        encoding "UTF-8"
+        encoding 'UTF-8'
         charSet 'UTF-8'
         author true
         version true
         title "文档大标题"
+        tags 'email:a:"邮箱"', 'date:a:"时间"'
     }
     // javadoc -tag date:a:"date" 自定义tag 可以排除 错误：未知标记： date
-    options.addStringOption("tag", "date:a:\"date\"")
+
 //    Gradle解决JavaDoc中文乱码问题
 //    options.addStringOption("encoding", "UTF-8")
 //    options.addStringOption("charset", "UTF-8")
 //    options.addBooleanOption("author", true)
 //    options.addBooleanOption("version", true)
 
+    // doclint的这种严格检查，默认情况下是打开的，添加-Xdoclint:none便可关闭检查。
+//    options.addStringOption('Xdoclint:none', '-quiet')
+
     if(JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
     }
 }
 
-javadoc.enabled false
+//javadoc.enabled false

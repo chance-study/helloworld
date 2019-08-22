@@ -11,7 +11,15 @@ sourceCompatibility = 1.8
 // 确保class文件与targetCompatibility指定版本，或者更新的java虚拟机兼容
 targetCompatibility = 1.8
 
+// 指定上传的路径
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+
 repositories {
+    // 本地maven仓库
+    mavenLocal()
+    maven { url localMavenRepo }
+    // 阿里的源
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
 }
 
@@ -58,4 +66,9 @@ task "createProject" {
     sourceSets*.scala.srcDirs*.each { it.mkdirs() }
     sourceSets*.java.srcDirs*.each { it.mkdirs() }
     sourceSets*.resources.srcDirs*.each { it.mkdirs() }
+}
+
+wrapper {
+    /* 使用5.4.1版本在idea中会导入项目报错，命令行构建项目没有问题 */
+    gradleVersion='5.4.1'
 }
