@@ -1,0 +1,1 @@
+INSERT INTO `cron` VALUES ('1', '0/5 * * * * ?');
