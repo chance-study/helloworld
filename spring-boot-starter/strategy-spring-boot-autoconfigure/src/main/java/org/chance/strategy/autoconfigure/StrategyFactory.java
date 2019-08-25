@@ -85,7 +85,6 @@ public class StrategyFactory {
     /**
      * 根据类型获取对应的策略工厂
      *
-     * @throws Exception
      */
     public <I extends Strategyable> I createStrategy(Enum e, String bizType) {
         // 默认不返回默认策略实现
@@ -95,7 +94,6 @@ public class StrategyFactory {
     /**
      * 根据类型获取对应的策略工厂
      *
-     * @throws Exception
      */
     public <I extends Strategyable> I createStrategy(Enum e, String bizType, boolean defaultSwitch) {
 

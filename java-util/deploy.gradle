@@ -96,12 +96,19 @@ publishing {
  * - catchance@163.com
  * - for gradle
  * - o
+ * - 12345678
+ * - 12345678
  * - pub   2048R/2F677125 2019-07-31 （这里的 2F677125 就是 signing.keyId）
+ *
+ * # The public key ID (The last 8 symbols of the keyId. You can use gpg -K to get it)
+ * # The absolute path to the secret key ring file containing your private key. (Since gpg 2.1, you need to export the keys with command gpg --keyring secring.gpg --export-secret-keys > ~/.gnupg/secring.gpg).
+ * # The passphrase used to protect your private key.
  *
  * ### ~/.gradle/gradle.properties 配置
  * signing.keyId=2F677125
- * signing.password=
- * signing.secretKeyRingFile=C:/Users/HP/.gnupg/secring.gpg
+ * signing.password=12345678
+ * # signing.secretKeyRingFile=C:/Users/HP/.gnupg/secring.gpg
+ * signing.secretKeyRingFile=/Users/gengchao/.gnupg/secring.gpg
  *
  */
 signing {
