@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
  * @email chao_geng@sui.com
  * @date 2019/8/22
  */
-@Component
+//@Component
 public class DynamicScheduleTask implements SchedulingConfigurer {
 
     @Autowired

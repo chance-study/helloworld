@@ -11,10 +11,12 @@ sourceCompatibility = '1.8'
 
 def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
 
+logger.quiet(localMavenRepo)
+
 repositories {
+    maven { url localMavenRepo }
     // 本地maven仓库
     mavenLocal()
-    maven { url localMavenRepo }
     // 阿里的源
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
@@ -27,13 +29,13 @@ dependencies {
     // lombok配置
     // idea中如果出现单元测试有问题
     // 需要设置 File | Settings | Build, Execution, Deployment | Compiler | Annotation Processors 
-    
+
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compileOnly 'org.projectlombok:lombok:1.18.8'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.8'
     testCompileOnly 'org.projectlombok:lombok:1.18.8'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    
+
 }
 

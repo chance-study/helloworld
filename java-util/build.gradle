@@ -1,9 +1,11 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.6.RELEASE' apply false
+    // 老版本的引入pom
+//    id 'org.springframework.boot' version '2.1.6.RELEASE' apply false
     id 'java'
 }
 
-apply plugin: 'io.spring.dependency-management'
+// 老版本的引入pom
+//apply plugin: 'io.spring.dependency-management'
 
 apply from: './deploy.gradle'
 
@@ -21,12 +23,13 @@ configurations {
     }
 }
 
+// 老版本的引入pom
 // 单独使用Spring Boot的依赖管理
-dependencyManagement {
-    imports {
-        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
-    }
-}
+//dependencyManagement {
+//    imports {
+//        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+//    }
+//}
 
 // 指定上传的路径
 def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
@@ -47,12 +50,70 @@ logger.quiet('An info log message which is always logged.')
 // 跳过javadoc
 //javadoc.enabled = false
 
+configurations {
+    /**
+     * 依赖版本锁定:将动态或远程依赖项锁定到特定的版本，从而使依赖项解析更加确定和可重现。这可以防止转换依赖项的更改意外地破坏构建。
+     */
+    compileClasspath {
+        resolutionStrategy.activateDependencyLocking()
+    }
+
+    all {
+        // 强制依赖
+//        resolutionStrategy {
+//            force "org.apache.commons:commons-lang3:3.5"
+//        }
+        // 全局性的关闭依赖传递特性
+//        transitive = false
+
+    }
+}
+
+/**
+ * api和implementation两种依赖的不同点在于：它们声明的依赖其他模块是否能使用。
+ *
+ * api：当其他模块依赖于此模块时，此模块使用api声明的依赖包是可以被其他模块使用
+ * implementation：当其他模块依赖此模块时，此模块使用implementation声明的依赖包只限于模块内部使用，不允许其他模块使用。
+ *
+ * All api dependencies are marked as compile while implementation dependencies are marked as runtime.
+ *
+ * 定义版本范围 <version>[3.0,4.0)</version>
+ *
+ * 传递依赖特性可以轻松地通过transitive参数进行开启或关闭，上面的示例中如果要忽略spring-web的传递性依赖可以采用指定 transitive = false 的方式来关闭依赖传递特性，也可以采用添加@jar的方式忽略该依赖的所有传递性依赖。
+ *
+ */
 dependencies {
+
+    // import a BOM
+    implementation platform('org.springframework.boot:spring-boot-dependencies:2.1.6.RELEASE')
+
+    // define dependencies without versions
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.apache.commons:commons-lang3:3.9'
     compileOnly 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.apache.commons:commons-text:1.7'
+
+    // 采用添加@jar的方式忽略该依赖的所有传递性依赖
+//    compile "org.springframework:spring-web:4.3.4.RELEASE@jar"
+
+    //
+//    compile('org.hibernate:hibernate:3.1') {
+//        // 冲突时优先使用该版本
+//        force = true
+//        // 依据构建名称排除
+//        exclude module: 'cglib'
+//        // 依据组织名称排除
+//        exclude group: 'org.jmock'
+//        // 依据组织名称+构件名称排除
+//        exclude group: 'org.unwanted', module: 'iAmBuggy'
+//        // 为本依赖关闭依赖传递特性
+//        transitive = false
+//    }
+
+    // 动态版本
+//    compile 'org.springframework:spring-web:+'
+
 }
 
 wrapper {

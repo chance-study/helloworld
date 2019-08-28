@@ -56,7 +56,7 @@ public class StrategyStarterApplicationTests {
         ShowProcessor showProcessor = StrategyFactory.getInstance().createStrategy(null, ShowProcessor.BIZ_TYPE);
 
         assertThatNullPointerException()
-                .isThrownBy(()->showProcessor.process("test"));
+                .isThrownBy(() -> showProcessor.process("test"));
 
     }
 

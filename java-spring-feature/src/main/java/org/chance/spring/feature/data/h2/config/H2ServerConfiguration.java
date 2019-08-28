@@ -8,20 +8,21 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import java.sql.SQLException;
 
 /**
  * H2ServerConfiguration
+ * Only activate this in the "dev" profile
  *
  * @author GengChao
  * @email chao_geng@sui.com
  * @date 2019/8/23
  */
-
 @Configuration
 @ConditionalOnClass(Server.class)
-//@Profile("dev") // Only activate this in the "dev" profile
+@Profile("dev")
 public class H2ServerConfiguration {
 
     // TCP port for remote connections, default 9092
@@ -39,6 +40,9 @@ public class H2ServerConfiguration {
      * jdbc:h2:tcp://localhost:9092/~/db/testdb
      *
      * 开启后可以使用 Idea的 Database连接h2内存数据库
+     * url: jdbc:h2:tcp://localhost:9092/mem:testdb
+     * username: sa
+     * password: null
      *
      * @return
      * @throws SQLException

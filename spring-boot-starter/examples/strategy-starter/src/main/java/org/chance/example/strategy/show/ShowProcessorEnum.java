@@ -1,7 +1,6 @@
 package org.chance.example.strategy.show;
 
 /**
- *
  * Created on 2019-03-27
  *
  * @author GengChao

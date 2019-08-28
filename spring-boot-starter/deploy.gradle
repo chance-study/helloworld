@@ -132,7 +132,7 @@ javadoc {
     // doclint的这种严格检查，默认情况下是打开的，添加-Xdoclint:none便可关闭检查。
 //    options.addStringOption('Xdoclint:none', '-quiet')
 
-    if(JavaVersion.current().isJava9Compatible()) {
+    if (JavaVersion.current().isJava9Compatible()) {
         options.addBooleanOption('html5', true)
     }
 }
