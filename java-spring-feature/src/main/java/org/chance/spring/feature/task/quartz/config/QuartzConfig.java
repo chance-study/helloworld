@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * @email chao_geng@sui.com
  * @date 2019/8/22
  */
-@Configuration
+//@Configuration
 public class QuartzConfig {
 
     @Bean

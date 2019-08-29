@@ -12,8 +12,7 @@ import java.lang.annotation.Target;
  *
  * <p>任务的配置只需要在Job类上加上此注解即可<p>
  *
- * @author yinjihuan
- * @about http://cxytiandi.com/about
+ * @author catchance &lt;catchance@163.com&gt;
  */
 @Component
 @Target({ElementType.TYPE})
