@@ -1,6 +1,4 @@
 plugins {
-    id 'org.springframework.boot' version '2.1.7.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id 'java'
 }
 
@@ -8,11 +6,44 @@ group = 'org.chance'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
 
-repositories {
-    mavenCentral()
-}
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
 
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+allprojects {
+//    apply plugin:'templates'
+    wrapper {
+        /* 使用5.4.1版本在idea中会导入项目报错，命令行构建项目没有问题 */
+        gradleVersion='5.4.1'
+    }
+
+    compileJava {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+        options.encoding = 'UTF-8'
+    }
+
+    //指定编译的编码
+    tasks.withType(JavaCompile){
+        options.encoding = "UTF-8"
+    }
+
+    // Gradle解决JavaDoc中文乱码问题
+    javadoc {
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            author true
+            version true
+            title "文档大标题"
+        }
+    }
+
+    repositories {
+        // 本地maven仓库
+        mavenLocal()
+        maven { url localMavenRepo }
+        // 阿里的源
+        maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+        mavenCentral()
+    }
+
 }

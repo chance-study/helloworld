@@ -1,1 +1,8 @@
-rootProject.name = 'elastic-job-spring-boot-starter'
+rootProject.name = 'spring-boot-starter'
+
+include ':strategy-spring-boot-starter', ':strategy-spring-boot-autoconfigure'
+include ':elastic-job-spring-boot-starter'
+
+// examples
+include 'examples:strategy-starter'
+
