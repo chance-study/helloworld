@@ -17,7 +17,7 @@ import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
 import org.chance.elasticjob.dynamic.bean.Job;
 import org.chance.elasticjob.dynamic.util.JsonUtils;
-import org.chance.elasticjob.parser.JobConfParser;
+import org.chance.elasticjob.parser.JobConfigParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -36,7 +36,7 @@ import java.util.Objects;
 @Service
 public class JobService {
 
-    private Logger logger = LoggerFactory.getLogger(JobConfParser.class);
+    private Logger logger = LoggerFactory.getLogger(JobConfigParser.class);
 
     @Autowired
     private ZookeeperRegistryCenter zookeeperRegistryCenter;
@@ -149,6 +149,8 @@ public class JobService {
         @SuppressWarnings("resource")
         PathChildrenCache childrenCache = new PathChildrenCache(client, "/", true);
         PathChildrenCacheListener childrenCacheListener = new PathChildrenCacheListener() {
+
+            @Override
             public void childEvent(CuratorFramework client, PathChildrenCacheEvent event) throws Exception {
                 ChildData data = event.getData();
                 switch (event.getType()) {

@@ -1,4 +1,4 @@
-package org.chance.elasticjob.base;
+package org.chance.elasticjob.parser;
 
 public class JobAttributeTag {
 

@@ -11,6 +11,6 @@ import org.springframework.context.annotation.Configuration;
  * @date 2019/8/28
  */
 @Configuration
-//@EnableElasticJob
+@EnableElasticJob
 public class ElasticJobConfig {
 }

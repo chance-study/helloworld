@@ -1,0 +1,7 @@
+// 子项目中不能包含此文件
+
+rootProject.name = 'micro-service'
+
+include ':dubbo-api'
+include ':dubbo-provider'
+include ':dubbo-consumer'

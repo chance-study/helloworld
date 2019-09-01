@@ -2,7 +2,7 @@ package org.chance.elasticjob.autoconfigure;
 
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperConfiguration;
 import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
-import org.chance.elasticjob.parser.JobConfParser;
+import org.chance.elasticjob.parser.JobConfigParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -43,8 +43,8 @@ public class JobParserAutoConfiguration {
     }
 
     @Bean
-    public JobConfParser jobConfParser() {
-        return new JobConfParser();
+    public JobConfigParser jobConfParser() {
+        return new JobConfigParser();
     }
 
 }

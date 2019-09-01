@@ -13,6 +13,7 @@ import com.dangdang.ddframe.job.reg.zookeeper.ZookeeperRegistryCenter;
 import org.chance.elasticjob.annotation.ElasticJobConfig;
 import org.chance.elasticjob.base.JobAttributeTag;
 import org.chance.elasticjob.dynamic.service.JobService;
+import org.chance.elasticjob.util.SpringEnvPropertyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -31,24 +32,20 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * Job解析类
  *
- * <p>从注解中解析任务信息初始化<p>
- *
- * @author GengChao
- * @email chao_geng@sui.com
- * @date 2019/8/28
+ * @author catchance &lt;catchance@163.com&gt;
+ * @date 2019-08-30 18:42:57
  */
-public class JobConfParser implements ApplicationContextAware {
+public class JobConfigParser implements ApplicationContextAware {
 
-    private Logger logger = LoggerFactory.getLogger(JobConfParser.class);
+    private Logger logger = LoggerFactory.getLogger(JobConfigParser.class);
 
     @Autowired
     private ZookeeperRegistryCenter zookeeperRegistryCenter;
 
-    private String prefix = "elastic-job.";
+    private String KEY_PREFIX = "elastic-job.";
 
     private Environment environment;
 
@@ -200,38 +197,29 @@ public class JobConfParser implements ApplicationContextAware {
      * @return
      */
     private String getEnvironmentStringValue(String jobName, String fieldName, String defaultValue) {
-        String key = prefix + jobName + "." + fieldName;
-        String value = environment.getProperty(key);
-        if (StringUtils.hasText(value)) {
-            return value;
-        }
-        return defaultValue;
+        return SpringEnvPropertyUtils.getStringPropertyValue(environment, buildKey(jobName, fieldName), defaultValue);
     }
 
     private int getEnvironmentIntValue(String jobName, String fieldName, int defaultValue) {
-        String key = prefix + jobName + "." + fieldName;
-        String value = environment.getProperty(key);
-        if (StringUtils.hasText(value)) {
-            return Integer.valueOf(value);
-        }
-        return defaultValue;
+        return SpringEnvPropertyUtils.getIntegerPropertyValue(environment, buildKey(jobName, fieldName), defaultValue);
     }
 
     private long getEnvironmentLongValue(String jobName, String fieldName, long defaultValue) {
-        String key = prefix + jobName + "." + fieldName;
-        String value = environment.getProperty(key);
-        if (StringUtils.hasText(value)) {
-            return Long.valueOf(value);
-        }
-        return defaultValue;
+        return SpringEnvPropertyUtils.getLongPropertyValue(environment, buildKey(jobName, fieldName), defaultValue);
     }
 
     private boolean getEnvironmentBooleanValue(String jobName, String fieldName, boolean defaultValue) {
-        String key = prefix + jobName + "." + fieldName;
-        String value = environment.getProperty(key);
-        if (StringUtils.hasText(value)) {
-            return Boolean.valueOf(value);
-        }
-        return defaultValue;
+        return SpringEnvPropertyUtils.getBooleanPropertyValue(environment, buildKey(jobName, fieldName), defaultValue);
+    }
+
+    /**
+     * build key
+     *
+     * @param jobName
+     * @param fieldName
+     * @return
+     */
+    private String buildKey(String jobName, String fieldName) {
+        return KEY_PREFIX + jobName + "." + fieldName;
     }
 }

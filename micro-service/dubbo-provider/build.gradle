@@ -1,0 +1,48 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java-library'
+//    id 'java'
+    // Java Plugin不包含 api()方法 改为应用java-library插件即可
+}
+
+group = 'org.chance'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+
+repositories {
+    maven { url localMavenRepo }
+    // 本地maven仓库
+    mavenLocal()
+    // 阿里的源
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+dependencies {
+
+    // Java Plugin不包含 api()方法 改为应用java-library插件即可
+    implementation project(":dubbo-api")
+    // 已经废弃
+//    implementation 'com.alibaba.spring.boot:dubbo-spring-boot-starter:2.0.0'
+    implementation 'org.apache.dubbo:dubbo-spring-boot-starter:2.7.3'
+    implementation 'org.apache.dubbo:dubbo:2.7.3'
+
+    implementation 'org.springframework.boot:spring-boot-starter'
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

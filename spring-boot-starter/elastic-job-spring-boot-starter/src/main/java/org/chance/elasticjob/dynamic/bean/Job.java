@@ -1,5 +1,9 @@
 package org.chance.elasticjob.dynamic.bean;
 
+/**
+ * @author catchance &lt;catchance@163.com&gt;
+ * @date 2019-08-30 18:42:57
+ */
 public class Job {
 
 /*********************DataflowJobConfiguration START********************/
