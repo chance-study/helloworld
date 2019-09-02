@@ -1,0 +1,7 @@
+pluginManagement {
+    repositories {
+        // 寻找官方的插件资源库
+        gradlePluginPortal()
+    }
+}
+rootProject.name = 'spring-boot-test'
