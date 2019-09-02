@@ -33,9 +33,16 @@ repositories {
 dependencies {
 
     implementation project(":dubbo-api")
+
+    // ^ dubbo 依赖
+    // 已经废弃
 //    implementation 'com.alibaba.spring.boot:dubbo-spring-boot-starter:2.0.0'
     implementation 'org.apache.dubbo:dubbo-spring-boot-starter:2.7.3'
     implementation 'org.apache.dubbo:dubbo:2.7.3'
+    implementation 'org.apache.curator:curator-framework:2.13.0'
+    implementation 'org.apache.curator:curator-recipes:2.13.0'
+    implementation 'io.netty:netty-all'
+    // $ dubbo 依赖
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'

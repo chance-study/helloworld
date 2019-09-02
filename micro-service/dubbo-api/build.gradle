@@ -18,3 +18,10 @@ repositories {
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
 }
+
+dependencies {
+    // ^ 参数校验
+    implementation 'javax.validation:validation-api:1.0.0.GA'
+    implementation 'org.hibernate:hibernate-validator:4.2.0.Final'
+    // $ 参数校验
+}
