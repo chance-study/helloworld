@@ -17,6 +17,8 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.when;
 
 /**
  * 对单个服务进行，测试不需要启动 spring boot的Application
@@ -59,7 +61,13 @@ public class UserVehicleServiceTests {
 
     @Test
     public void getVehicleDetailsWhenUsernameNotFoundShouldThrowException() {
+
         given(this.userRepository.findByUsername(anyString())).willReturn(null);
+
+        // 有些场景可以使用doReturn但是使用when就报错
+//        doReturn(null).when(userRepository).findByUsername(anyString());
+//        when(this.userRepository.findByUsername(anyString())).thenReturn(null);
+
         assertThatExceptionOfType(UserNameNotFoundException.class)
                 .isThrownBy(() -> this.service.getVehicleDetails("sboot"));
     }

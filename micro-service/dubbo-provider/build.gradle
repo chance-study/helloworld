@@ -45,6 +45,12 @@ dependencies {
     implementation 'org.apache.curator:curator-framework:2.13.0'
     implementation 'org.apache.curator:curator-recipes:2.13.0'
     implementation 'io.netty:netty-all'
+
+    // ^参数校验依赖
+    implementation 'org.hibernate:hibernate-validator:4.2.0.Final'
+    implementation 'javax.validation:validation-api:1.0.0.GA'
+    // $ 参数校验依赖
+
     // $ dubbo 依赖
 
     implementation 'org.springframework.boot:spring-boot-starter'
