@@ -3,6 +3,8 @@ package org.chance.dubbo.consumer.controller;
 import org.apache.dubbo.config.annotation.Reference;
 import org.chance.micro.rpc.api.dubbo.DemoRpcService;
 import org.chance.micro.rpc.api.dubbo.ValidationService;
+import org.chance.micro.rpc.api.exception.BizException;
+import org.chance.micro.rpc.api.exception.BizRuntimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.ApplicationRunner;
@@ -38,6 +40,26 @@ public class SayHelloController {
 
     @RequestMapping(value = "/say-hello", method = GET)
     public String sayHello(@RequestParam String name) {
+
+//        try {
+//            demoRpcService.checkedException(1L);
+//        } catch (BizException e) {
+//            logger.error("error {} {} {}",e.getCode(), e.getData(), e.getMessage());
+//        }
+
+        /**
+         * 可以捕获的 BizRuntimeException
+         */
+
+        try{
+            demoRpcService.runtimeException(1L);
+        }catch (BizRuntimeException e) {
+            logger.error("error {} {} {}",e.getCode(), e.getData(), e.getMessage());
+            logger.error(ExceptionUtil.getStackTrace(e));
+        }catch (Exception e) {
+            logger.error("error", e);
+        }
+
         return demoRpcService.sayHello(name);
     }
 

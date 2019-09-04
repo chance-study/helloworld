@@ -1,7 +1,10 @@
 package org.chance.dubbo.provider.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
 import org.chance.micro.rpc.api.dubbo.DemoRpcService;
+import org.chance.micro.rpc.api.exception.BizException;
+import org.chance.micro.rpc.api.exception.BizRuntimeException;
 import org.springframework.beans.factory.annotation.Value;
 
 /**
@@ -20,6 +23,7 @@ import org.springframework.beans.factory.annotation.Value;
  */
 @Service(registry = "dubboRegistry", timeout = 3000, version = "1.0",
         retries = 3, loadbalance = "random", actives = 5, group = "")
+@Slf4j
 public class DemoRpcServiceImpl implements DemoRpcService {
 
     @Value("${dubbo.application.name}")
@@ -27,7 +31,19 @@ public class DemoRpcServiceImpl implements DemoRpcService {
 
     @Override
     public String sayHello(String name) {
+
         return String.format("[%s] : Hello, %s", serviceName, name);
     }
 
+    @Override
+    public String checkedException(Long id) throws BizException {
+        log.info("checkedException");
+        throw new BizException("业务异常", "00001", "data");
+    }
+
+    @Override
+    public String runtimeException(Long id) {
+        log.info("runtimeException");
+        throw new BizRuntimeException("业务异常", "00001", "data");
+    }
 }

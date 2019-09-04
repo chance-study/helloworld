@@ -42,6 +42,14 @@ dependencies {
     implementation 'org.apache.curator:curator-framework:2.13.0'
     implementation 'org.apache.curator:curator-recipes:2.13.0'
     implementation 'io.netty:netty-all'
+
+    // ^ kryo序列化的依赖
+//    implementation 'de.javakaffee:kryo-serializers:0.42'
+    // $  kryo序列化的依赖
+    // ^ fst序列化的依赖
+//    implementation 'de.ruedigermoeller:fst:2.04'
+    // $ fst序列化的依赖
+
     // $ dubbo 依赖
 
     implementation 'org.springframework.boot:spring-boot-starter-web'

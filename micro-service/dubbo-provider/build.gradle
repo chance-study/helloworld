@@ -51,6 +51,13 @@ dependencies {
     implementation 'javax.validation:validation-api:1.0.0.GA'
     // $ 参数校验依赖
 
+    // ^ kryo序列化的依赖
+//    implementation 'de.javakaffee:kryo-serializers:0.42'
+    // $  kryo序列化的依赖
+    // ^ fst序列化的依赖
+//    implementation 'de.ruedigermoeller:fst:2.04'
+    // $ fst序列化的依赖
+
     // $ dubbo 依赖
 
     implementation 'org.springframework.boot:spring-boot-starter'
