@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
+ * 默认异常处理类： DefaultHandlerExceptionResolver
  * GlobalExceptionHandler
  *
  * @author GengChao

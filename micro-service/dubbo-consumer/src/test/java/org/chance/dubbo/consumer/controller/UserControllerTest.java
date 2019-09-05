@@ -19,28 +19,45 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @Slf4j
-public class SayHelloControllerTest {
+public class UserControllerTest {
 
-    /**
-     * Mock MVC提供了一种强力的方式来测试MVC controllers
-     * 而不用启动一个完整的HTTP server。
-     */
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void sayHello() throws Exception {
+    public void getUserByName() throws Exception {
 
-        log.info("sayHello test");
+        this.mvc.perform(get("/users/xxxxxx").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk())
+                .andExpect(content().string(containsString("xx")));
 
-        this.mvc.perform(get("/say-hello?name=xx").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk())
+
+    }
+
+    @Test
+    public void getUserByNameParam() throws Exception {
+
+        this.mvc.perform(get("/users?name=xxxxx").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk())
                 .andExpect(content().string(containsString("xx")));
 
     }
 
     @Test
-    public void validate() throws Exception {
-        this.mvc.perform(get("/validate?id=0").accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
-                .andExpect(content().string(containsString("id不能小于1")));
+    public void bar() throws Exception {
+
+        this.mvc.perform(get("/users/bar?age=17").accept(MediaType.TEXT_PLAIN)).andExpect(status().isOk())
+                .andExpect(content().string(containsString("xx")));
+
+    }
+
+    @Test
+    public void addUser() {
+    }
+
+    @Test
+    public void addUser1() {
+    }
+
+    @Test
+    public void addUser2() {
     }
 }

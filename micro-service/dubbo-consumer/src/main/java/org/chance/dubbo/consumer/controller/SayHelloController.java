@@ -83,15 +83,15 @@ public class SayHelloController {
      *
      * @return
      */
-    @Bean
-    public ApplicationRunner runner() {
-        return args -> {
-            try {
-                logger.info(demoRpcService.sayHello("test"));
-            } catch (Exception e) {
-                logger.error(e.getMessage());
-            }
-        };
-    }
+//    @Bean
+//    public ApplicationRunner runner() {
+//        return args -> {
+//            try {
+//                logger.info(demoRpcService.sayHello("test"));
+//            } catch (Exception e) {
+//                logger.error(e.getMessage());
+//            }
+//        };
+//    }
 
 }

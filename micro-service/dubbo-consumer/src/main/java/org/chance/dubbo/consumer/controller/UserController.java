@@ -107,7 +107,7 @@ public class UserController {
     @GetMapping
     public User getUserByNameParam(
             @NotNull
-            @Size(min = 1, max = 20, message = "用户名格式有误")
+            @Size(min = 1, max = 4, message = "用户名格式有误")
             @RequestParam("name") String name) {
         User user = new User();
         user.setName(name);
