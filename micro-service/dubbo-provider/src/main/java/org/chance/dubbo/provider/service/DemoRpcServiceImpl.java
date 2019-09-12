@@ -21,8 +21,8 @@ import org.springframework.beans.factory.annotation.Value;
  * @email chao_geng@sui.com
  * @date 2019/9/1
  */
-@Service(registry = "dubboRegistry", timeout = 3000, version = "1.0",
-        retries = 3, loadbalance = "random", actives = 5, group = "")
+//@Service(registry = "dubboRegistry", timeout = 3000, version = "1.0",
+//        retries = 3, loadbalance = "random", actives = 5, group = "")
 @Slf4j
 public class DemoRpcServiceImpl implements DemoRpcService {
 

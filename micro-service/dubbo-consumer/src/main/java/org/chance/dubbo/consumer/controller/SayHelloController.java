@@ -7,6 +7,7 @@ import org.chance.micro.rpc.api.exception.BizException;
 import org.chance.micro.rpc.api.exception.BizRuntimeException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.context.properties.bind.BindResult;
 import org.springframework.context.annotation.Bean;
@@ -33,9 +34,10 @@ public class SayHelloController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
-    @Reference(version = "1.0",
-            interfaceClass = DemoRpcService.class,
-            check = false, group = "")
+//    @Reference(version = "1.0",
+//            interfaceClass = DemoRpcService.class,
+//            check = false, group = "")
+    @Autowired(required = false)
     private DemoRpcService demoRpcService;
 
     @RequestMapping(value = "/say-hello", method = GET)
