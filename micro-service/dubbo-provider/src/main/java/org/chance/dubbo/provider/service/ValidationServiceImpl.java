@@ -8,6 +8,8 @@ import org.chance.micro.rpc.api.dubbo.ValidationService;
 /**
  * ValidationServiceImpl
  *
+ * - loadbalance 集群负载均衡策略 （random, roundrobin, leastactive）
+ *
  * @author GengChao
  * @email chao_geng@sui.com
  * @date 2019/9/2

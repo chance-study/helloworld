@@ -17,6 +17,13 @@ apply plugin: 'signing'
 //    isReleaseVersion = !(projectVersion =~ /-SNAPSHOT$/)
 //    isNeedSign = System.getenv('GPG_ID') && isReleaseVersion
 //}
+// 添加maven optional依赖支持
+// 除了本文中的方式，还有通过插件的方式 
+// https://github.com/nebula-plugins/gradle-extra-configurations-plugin
+configurations {
+    optional
+    compile.extendsFrom optional
+}
 
 task sourcesJar(type: Jar) {
     from sourceSets.main.allJava
@@ -31,7 +38,7 @@ task javadocJar(type: Jar) {
 // 指定上传的路径
 def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
 
-// maven-publish插件
+// maven-publish 插件
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -60,6 +67,32 @@ publishing {
                     connection = 'scm:git:git://example.com/my-library.git'
                     developerConnection = 'scm:git:ssh://example.com/my-library.git'
                     url = 'http://example.com/my-library/'
+                }
+                // 添加maven optional 依赖支持
+                withXml {
+                    asNode().dependencies.dependency.findAll { xmlDep ->
+                        // mark optional dependencies
+                        if (project.configurations.optional.allDependencies.findAll { dep ->
+                            xmlDep.groupId.text() == dep.group && xmlDep.artifactId.text() == dep.name
+                        }) {
+                            def xmlOptional = xmlDep.optional[0]
+                            if (!xmlOptional) {
+                                xmlOptional = xmlDep.appendNode('optional')
+                            }
+                            xmlOptional.value = 'true'
+                        }
+
+                        // fix maven-publish issue when all maven dependencies are placed into runtime scope
+                        if (project.configurations.compile.allDependencies.findAll { dep ->
+                            xmlDep.groupId.text() == dep.group && xmlDep.artifactId.text() == dep.name
+                        }) {
+                            def xmlScope = xmlDep.scope[0]
+                            if (!xmlScope) {
+                                xmlScope = xmlDep.appendNode('scope')
+                            }
+                            xmlScope.value = 'compile'
+                        }
+                    }
                 }
             }
         }

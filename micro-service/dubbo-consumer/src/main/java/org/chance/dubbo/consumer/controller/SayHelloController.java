@@ -66,6 +66,11 @@ public class SayHelloController {
     }
 
 
+    /**
+     * - check: 启动时检查
+     * - cluster: 集群容错方案（failover、failfast、failsafe、failback、forking、broadcast）
+     * - url: 配置 url 指向提供者，将绕过注册中心，多个地址用分号隔开
+     */
     @Reference(version = "1.0", check = false, group = "", validation = "true")
     private ValidationService validationService;
 

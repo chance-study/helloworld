@@ -1,0 +1,42 @@
+plugins {
+    id 'java-library'
+}
+
+apply from: '../deploy.gradle'
+
+group = 'org.chance'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+
+repositories {
+    // 本地maven仓库
+    mavenLocal()
+    maven { url localMavenRepo }
+    // 阿里的源
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+configurations {
+    optional
+    compile.extendsFrom optional
+}
+
+dependencies {
+
+    // import a BOM
+    api platform('org.springframework.boot:spring-boot-dependencies:2.1.6.RELEASE')
+    api 'org.springframework.boot:spring-boot-autoconfigure'
+
+    // spring默认使用yml中的配置，但有时候要用传统的xml或properties配置，就需要使用spring-boot-configuration-processor了
+    api 'org.springframework.boot:spring-boot-configuration-processor'
+
+    optional 'org.springframework.boot:spring-boot-starter-data-redis'
+    optional 'org.apache.zookeeper:zookeeper:3.4.13'
+    optional 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+}
