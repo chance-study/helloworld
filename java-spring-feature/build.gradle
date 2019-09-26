@@ -6,7 +6,12 @@ plugins {
 
 group = 'org.chance'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+
+// 指定编码环境
+sourceCompatibility JavaVersion.VERSION_1_8
+
+// 指定编译环境
+targetCompatibility JavaVersion.VERSION_1_8
 
 configurations {
     developmentOnly

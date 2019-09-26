@@ -8,10 +8,11 @@ apply plugin: 'io.spring.dependency-management'
 group 'org.chance'
 version '1.0-SNAPSHOT'
 
-// 指定编译编译.java文件的jdk版本
-sourceCompatibility = 1.8
-// 确保class文件与targetCompatibility指定版本，或者更新的java虚拟机兼容
-targetCompatibility = 1.8
+// 指定编码环境:指定编译编译.java文件的jdk版本
+sourceCompatibility = JavaVersion.VERSION_1_8
+// 指定编译环境:确保class文件与targetCompatibility指定版本，或者更新的java虚拟机兼容
+targetCompatibility = JavaVersion.VERSION_1_8
+
 
 // 指定上传的路径
 def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
@@ -36,6 +37,8 @@ dependencies {
 
     implementation 'org.chance:java-util:0.0.1-SNAPSHOT'
     implementation 'org.springframework.boot:spring-boot-starter'
+
+    implementation 'org.javassist:javassist:3.20.0-GA'
 
     annotationProcessor 'org.projectlombok:lombok:1.18.8'
     compileOnly 'org.projectlombok:lombok:1.18.8'
