@@ -6,4 +6,4 @@ include ':distributelock-spring-boot-starter'
 
 // examples
 include 'examples:strategy-starter'
-
+include 'examples:distributelock-starter-example'

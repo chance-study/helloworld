@@ -1,0 +1,52 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.6.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'java'
+}
+
+group = 'org.chance'
+version = '0.0.1-SNAPSHOT'
+
+// 指定编码环境:指定编译编译.java文件的jdk版本
+sourceCompatibility = JavaVersion.VERSION_1_8
+// 指定编译环境:确保class文件与targetCompatibility指定版本，或者更新的java虚拟机兼容
+targetCompatibility = JavaVersion.VERSION_1_8
+
+configurations {
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
+
+logger.quiet(localMavenRepo)
+
+repositories {
+    maven { url localMavenRepo }
+    // 本地maven仓库
+    mavenLocal()
+    // 阿里的源
+    maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
+    mavenCentral()
+}
+
+dependencies {
+
+//    implementation project(':distributelock-spring-boot-starter')
+    implementation 'org.chance:distributelock-spring-boot-starter:0.0.1-SNAPSHOT'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.h2database:h2'
+
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}

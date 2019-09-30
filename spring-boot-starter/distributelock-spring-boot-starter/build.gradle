@@ -24,6 +24,11 @@ configurations {
     compile.extendsFrom optional
 }
 
+ext{
+    //Dependencies
+    embeddedRredisVersion = '0.11.0'
+}
+
 dependencies {
 
     // import a BOM
@@ -33,10 +38,29 @@ dependencies {
     // spring默认使用yml中的配置，但有时候要用传统的xml或properties配置，就需要使用spring-boot-configuration-processor了
     api 'org.springframework.boot:spring-boot-configuration-processor'
 
+    // retry支持
+    api 'org.springframework.retry:spring-retry'
+
+    implementation 'org.projectlombok:lombok:1.18.2'
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+
     optional 'org.springframework.boot:spring-boot-starter-data-redis'
-    optional 'org.apache.zookeeper:zookeeper:3.4.13'
-    optional 'org.springframework.boot:spring-boot-starter-data-redis'
+
+
+    optional 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    optional 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+    // curator zk客户端的分布式锁的实现
+//    optional 'org.apache.zookeeper:zookeeper:3.4.13'
+    optional 'org.apache.curator:curator-recipes:4.2.0'
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+//    testImplementation 'com.bfjournal:embedded-redis:${embeddedRredisVersion}'
+    // https://github.com/kstyrc/embedded-redis
+    testImplementation 'com.github.kstyrc:embedded-redis:0.6'
+    testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
 
+    testImplementation 'com.h2database:h2'
+    
 }
