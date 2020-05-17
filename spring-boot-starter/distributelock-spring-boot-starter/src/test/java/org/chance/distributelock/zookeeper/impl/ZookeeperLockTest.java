@@ -49,7 +49,8 @@ public class ZookeeperLockTest implements InitializingBean {
     public void shouldLock() {
         final String token = lock.acquire(Collections.singletonList("1"), "locks", 1000);
         assertThat(token).isEqualTo("abc");
-//        assertThat(redisTemplate.opsForValue().get("locks:1")).isEqualTo("abc");
+
+//        assertThat(curatorFramework.getData()).isEqualTo("abc");
     }
 
     @SpringBootApplication(scanBasePackageClasses = {ZkDistributedLockConfiguration.class, EmbeddedZooKeeper.class})
