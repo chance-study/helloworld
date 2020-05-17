@@ -77,9 +77,17 @@ dependencies {
     implementation 'com.h2database:h2'
 
     implementation 'org.chance:elastic-job-spring-boot-starter:0.0.1-SNAPSHOT'
+    jooqRuntime 'postgresql:postgresql:9.1-901.jdbc4'
+
+    implementation 'org.jooq:jooq'
 
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+jooq {
+    version = '3.12.3' // the default (can be omitted)
+    edition = 'OSS'    // the default (can be omitted), other allowed values are PRO, PRO_JAVA_6, and TRIAL
 }

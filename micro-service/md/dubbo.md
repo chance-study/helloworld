@@ -1,3 +1,9 @@
+### apache dubbo 2.7新特性
+- [github >> dubbo](https://github.com/apache/dubbo)
+- [dubbo-spring-boot-project](https://github.com/apache/dubbo-spring-boot-project)
+https://dubbo.apache.org/zh-cn/blog/dubbo-27-features.html
+
+
 ### dubbo异常的处理
 - 建议使用异常汇报错误，而不是返回错误码，异常信息能携带更多信息，并且语义更友好。
 - 如果担心性能问题，在必要时，可以通过 override 掉异常类的 fillInStackTrace() 方法为空方法，使其不拷贝栈信息。
