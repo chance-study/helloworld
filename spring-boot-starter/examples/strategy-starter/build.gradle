@@ -17,13 +17,13 @@ repositories {
     maven { url localMavenRepo }
     // 本地maven仓库
     mavenLocal()
-    // 阿里的源
+    // 阿里的源ch
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
     mavenCentral()
 }
 
 dependencies {
-    implementation 'org.chance:strategy-spring-boot-starter:0.0.1-SNAPSHOT'
+    implementation 'org.chance:strategy-spring-boot-starter:0.1.0'
     implementation 'org.springframework.boot:spring-boot-starter'
 
     // lombok配置

@@ -1,7 +1,7 @@
 package org.chance.example.strategy.show;
 
-import org.chance.strategy.autoconfigure.StrategyAnnotation;
-import org.chance.strategy.autoconfigure.Strategyable;
+import org.chance.strategy.core.Strategyable;
+import org.chance.strategy.core.annotation.StrategyAnnotation;
 
 /**
  * ShowProcessor

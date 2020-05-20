@@ -2,7 +2,7 @@ package org.chance.example.strategy;
 
 import org.chance.example.strategy.show.ShowProcessor;
 import org.chance.example.strategy.show.ShowProcessorEnum;
-import org.chance.strategy.autoconfigure.StrategyFactory;
+import org.chance.strategy.core.factory.StrategyFactory;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
