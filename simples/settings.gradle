@@ -1,0 +1,14 @@
+pluginManagement{
+    // pluginManagement {}块只能出现在settings.gradle文件中，该文件必须是文件中的第一个块
+    plugins {
+        // https://github.com/spring-gradle-plugins
+        id 'org.springframework.boot' version "${springBootVersion}"
+    }
+}
+
+// 使用gradle将maven的pom.xml转换成gradle的build.gradle 
+// gradle init --type pom
+
+rootProject.name = 'simples'
+
+include ':springboot-springmvc-mybatis'
