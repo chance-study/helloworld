@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Error {
+public class Error<T> {
 
     /**
      * 错误码
@@ -31,5 +31,6 @@ public class Error {
     /**
      *
      */
-    private String detail;
+    private T data;
+
 }

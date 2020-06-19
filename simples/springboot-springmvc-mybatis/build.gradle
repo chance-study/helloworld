@@ -4,6 +4,9 @@ dependencies {
     // import a BOM
     api platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    
+    // 依赖自己的api
+    implementation "org.chance:validator:0.1.0"
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
