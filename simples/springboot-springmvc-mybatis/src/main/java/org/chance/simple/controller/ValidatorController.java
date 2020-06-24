@@ -33,7 +33,7 @@ public class ValidatorController {
      * @return
      */
     @GetMapping("/{status}")
-    public IndexRespVO path(@Valid @NotNull @EnumValidation(target = StatusEnum.class, field = "code") @PathVariable("status") Integer status) {
+    public IndexRespVO path(@Valid @NotNull @EnumValidation(message = "参数status=${validatedValue}不是{target}${formatter.format('%1$s', '[')}{optionalValue}${formatter.format('%1$s', ']')}枚举中的值",target = StatusEnum.class, field = "code") @PathVariable("status") Integer status) {
         return IndexRespVO.builder().info("success").build();
     }
 
