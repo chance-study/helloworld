@@ -1,0 +1,19 @@
+logging:
+  level:
+    org:
+      hibernate:
+        # 把SpringBoot的Hibernate的debug信息打开
+        SQL: debug
+spring:
+  flyway:
+    enabled: false
+  data:
+    jpa:
+      repositories:
+        enabled: false
+  # aop相关配置
+  aop:
+    # 是否启用代理，默认启动
+    auto: true
+    # 代理方式 默认true使用cglib，false使用jdk动态代理
+    proxy-target-class: false

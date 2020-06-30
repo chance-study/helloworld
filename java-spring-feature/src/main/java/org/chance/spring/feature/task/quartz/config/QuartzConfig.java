@@ -9,6 +9,7 @@ import org.quartz.Trigger;
 import org.quartz.TriggerBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 /**
  * QuartzConfig
@@ -17,7 +18,8 @@ import org.springframework.context.annotation.Configuration;
  * @email chao_geng@sui.com
  * @date 2019/8/22
  */
-//@Configuration
+@Configuration
+@Profile("dev")
 public class QuartzConfig {
 
     @Bean

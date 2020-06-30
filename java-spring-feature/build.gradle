@@ -49,6 +49,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-quartz'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    // 此包包含aspectjweaver这个依赖
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    
     implementation 'org.flywaydb:flyway-core'
     // 加入了H2 数据库的引用的话，其将会把数据持久化到H2 内存数据库中。
     // 通过启动日志可以得到 H2的连接的URL为jdbc:h2:mem:testdb
@@ -57,14 +60,20 @@ dependencies {
 //    runtimeOnly 'com.h2database:h2'
     implementation 'com.h2database:h2'
 
-    implementation 'org.chance:elastic-job-spring-boot-starter:0.0.1-SNAPSHOT'
+//    implementation 'org.chance:elastic-job-spring-boot-starter:0.0.1-SNAPSHOT'
 //    jooqRuntime 'postgresql:postgresql:9.1-901.jdbc4'
 
     implementation 'org.jooq:jooq'
-
-    compileOnly 'org.projectlombok:lombok'
+    
+    // lombok配置
+    // idea中如果出现单元测试有问题
+    // 需要设置 File | Settings | Build, Execution, Deployment | Compiler | Annotation Processors
+    annotationProcessor "org.projectlombok:lombok:${lombok}"
+    compileOnly "org.projectlombok:lombok:${lombok}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombok}"
+    testCompileOnly "org.projectlombok:lombok:${lombok}"
+    
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
-    annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
