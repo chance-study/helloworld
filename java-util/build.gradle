@@ -94,6 +94,11 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.apache.commons:commons-text:1.7'
 
+//    相关工具类
+    implementation 'com.google.guava:guava:29.0-jre'
+
+    implementation 'commons-codec:commons-codec:1.14'
+
     // 采用添加@jar的方式忽略该依赖的所有传递性依赖
 //    compile "org.springframework:spring-web:4.3.4.RELEASE@jar"
 
