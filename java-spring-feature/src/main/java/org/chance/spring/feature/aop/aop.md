@@ -22,3 +22,10 @@ public class ProxyConfig implements Serializable {
 Advice: 通知拦截器
 Advisor: 通知 + 切入点的适配器
 Advised: 包含所有的Advised 和 Advice
+
+# cglib、jdkDynamic
+- JdkDynamicAopProxy 入口方法是动态代理的 invoke() 方法，CGLIB 使用的是 DynamicAdvisedInterceptor.intercept()方法
+- JdkDynamicAopProxy使用的MethodInvocation 是： ReflectiveMethodInvocation 子类，
+CGLIB 使用的是CglibMethodInvocation
+它俩都是ProxyMethodInvocation接口的实现类。并且CglibMethodInvocation是继承自ReflectiveMethodInvocation的
+- CGLib更适合代理不需要频繁实例化的类，而Spring绝大多数Bean都是单例的，因此在Spring AOP中我极力推荐使用CGLib，它的功能更强大些

@@ -14,7 +14,7 @@ import java.util.Arrays;
  * @author GengChao &lt;catchance@163.com&gt;
  * @date 2020-07-03 16:52:39
  */
-public class Main {
+public class JdkDynamicAopProxyDemo {
 
     public static void main(String[] args) {
 
@@ -30,7 +30,7 @@ public class Main {
         System.out.println(proxyFactory.getTargetClass()); //class com.fsx.maintest.Demo
         System.out.println(proxyFactory.getTargetSource()); //SingletonTargetSource for target object [com.fsx.maintest.Demo@643b1d11]
         System.out.println(Arrays.asList(proxyFactory.getProxiedInterfaces())); //[interface com.fsx.maintest.DemoInterface]
-        System.out.println(Arrays.asList(proxyFactory.getAdvisors())); //[org.springframework.aop.support.DefaultPointcutAdvisor: pointcut [Pointcut.TRUE]; advice [com.fsx.maintest.Main$$Lambda$2/1349414238@2ef5e5e3]]
+        System.out.println(Arrays.asList(proxyFactory.getAdvisors())); //[org.springframework.aop.support.DefaultPointcutAdvisor: pointcut [Pointcut.TRUE]; advice [com.fsx.maintest.JdkDynamicAopProxyDemo$$Lambda$2/1349414238@2ef5e5e3]]
 
         // 获取类型，看看是JDK代理还是cglib的
         System.out.println(demo instanceof Proxy); //true  所有的JDK代理都是继承自Proxy的
@@ -42,7 +42,7 @@ public class Main {
         //测试Advised接口、DecoratingProxy的内容
         Advised advised = (Advised) demo;
         System.out.println(Arrays.asList(advised.getProxiedInterfaces())); //[interface com.fsx.maintest.DemoInterface]
-        System.out.println(Arrays.asList(advised.getAdvisors())); //[org.springframework.aop.support.DefaultPointcutAdvisor: pointcut [Pointcut.TRUE]; advice [com.fsx.maintest.Main$$Lambda$2/1349414238@2ef5e5e3]]
+        System.out.println(Arrays.asList(advised.getAdvisors())); //[org.springframework.aop.support.DefaultPointcutAdvisor: pointcut [Pointcut.TRUE]; advice [com.fsx.maintest.JdkDynamicAopProxyDemo$$Lambda$2/1349414238@2ef5e5e3]]
         System.out.println(advised.isExposeProxy()); //false
         System.out.println(advised.isFrozen()); //false
 
@@ -64,15 +64,16 @@ public class Main {
 
     }
 
-}
-
-interface DemoInterface {
-    void hello();
-}
-
-class Demo implements DemoInterface {
-    @Override
-    public void hello() {
-        System.out.println("this demo show");
+    interface DemoInterface {
+        void hello();
     }
+
+    static class Demo implements DemoInterface {
+        @Override
+        public void hello() {
+            System.out.println("this demo show");
+        }
+    }
+
 }
+
