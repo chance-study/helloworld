@@ -1,11 +1,9 @@
 package org.chance.pattern.structural.adapter;
 
 /**
- * DefaultAdapter
  *
- * @author GengChao
- * @email chao_geng@sui.com
- * @date 2020/7/1
+ * @author GengChao &lt;catchance@163.com&gt;
+ * @date 2020-07-08 17:14:03
  */
 public abstract class DefaultAdapter implements Target {
 
