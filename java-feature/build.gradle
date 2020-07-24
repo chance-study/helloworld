@@ -1,18 +1,22 @@
-plugins {
-    id 'org.springframework.boot' version '2.1.6.RELEASE' apply false
-    id 'java'
-}
+// 需要部署jar包的项目
+// Gradle 3.4+ 使用java-library插件替换java插件
+apply plugin: 'java-library'
 
-apply plugin: 'io.spring.dependency-management'
+// 读取的gradle.properties中的变量
+group = "${group}"
+version = "${version}"
 
-group 'org.chance'
-version '1.0-SNAPSHOT'
-
-// 指定编码环境:指定编译编译.java文件的jdk版本
+//  指定编码环境:指定编译编译.java文件的jdk版本
 sourceCompatibility = JavaVersion.VERSION_1_8
-// 指定编译环境:确保class文件与targetCompatibility指定版本，或者更新的java虚拟机兼容
+//  指定编译环境:确保class文件与targetCompatibility指定版本，或者更新的java虚拟机兼容
 targetCompatibility = JavaVersion.VERSION_1_8
 
+ext {
+    lombok = '1.18.8'
+    springBootVersion = '2.1.6.RELEASE'
+}
+
+[compileJava, compileTestJava, javadoc]*.options*.encoding = 'UTF-8'
 
 // 指定上传的路径
 def localMavenRepo = 'file://' + new File(System.getProperty('user.home'), '.m2/repository').absolutePath
@@ -26,14 +30,10 @@ repositories {
     mavenCentral()
 }
 
-// 单独使用Spring Boot的依赖管理
-dependencyManagement {
-    imports {
-        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
-    }
-}
-
 dependencies {
+
+    // import a BOM
+    implementation platform("org.springframework.boot:spring-boot-dependencies:${springBootVersion}")
 
     implementation 'org.chance:java-util:0.0.1-SNAPSHOT'
     implementation 'org.springframework.boot:spring-boot-starter'
@@ -55,6 +55,6 @@ tasks.withType(JavaCompile){
 }
 
 wrapper {
-    /* 使用5.4.1版本在idea中会导入项目报错，命令行构建项目没有问题 */
-    gradleVersion='5.4.1'
+    /* 使用5.6.4版本在idea中会导入项目报错，命令行构建项目没有问题 */
+    gradleVersion = '5.6.4'
 }

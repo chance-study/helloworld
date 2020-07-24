@@ -59,6 +59,7 @@ CGLIB 使用的是CglibMethodInvocation
 
 # 注意点
 - proxy(代理对象)代理的不是target,而是TargetSource,这点非常重要!!!
+- 在使用Spring AOP的时候，我们从IOC容器中获取的Bean对象其实都是代理对象，而不是那些Bean对象本身，由于this关键字引用的并不是该Service Bean对象的代理对象，而是其本身，因此Spring AOP是不能拦截到这些被嵌套调用的方法的。
 
 # Reference
 - [Spring AOP中@Pointcut切入点表达式最全面使用介绍](https://blog.csdn.net/f641385712/article/details/83543270)

@@ -61,12 +61,11 @@
 ### 模板方法模式(Template Method)
 ### 访问者模式(Visitor)
 
-## 责任链模式
-
 # Reference
 - [责任链模式](https://www.runoob.com/design-pattern/chain-of-responsibility-pattern.html)
 - [设计模式的三大分类及六大原则](https://blog.csdn.net/ttxs99989/article/details/81844135)
 - [详解Spring AOP的底层代理JdkDynamicAopProxy和ObjenesisCglibAopProxy的源码分析](https://blog.csdn.net/f641385712/article/details/88952482)
+- [GoF 的 23 种设计模式](http://c.biancheng.net/view/1348.html)
 
 # License
 Validator is Open Source software released under the [Apache 2.0 license](https://www.apache.org/licenses/LICENSE-2.0.html).

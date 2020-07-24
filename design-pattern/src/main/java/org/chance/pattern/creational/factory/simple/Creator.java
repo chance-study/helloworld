@@ -1,19 +1,21 @@
 package org.chance.pattern.creational.factory.simple;
 
 /**
- * Creator
+ * 工厂角色（Creator）：这是简单工厂模式的核心，由它负责创建所有的类的内部逻辑。当然工厂类必须能够被外界调用，创建所需要的产品对象。
  *
- * @author GengChao
- * @email chao_geng@sui.com
- * @date 2019/6/14
+ * @author GengChao &lt;catchance@163.com&gt;
+ * @date 2020-07-14 14:57:12
  */
-class Creator {
+public class Creator {
 
-    public static Product getProduct(String type){
-        switch(type){
-            case "A":return new ConcreteProductA();
-            case "B":return new ConcreteProductB();
-            default:return null;
+    public static Product getProduct(String type) {
+        switch (type) {
+            case "A":
+                return new ConcreteProductA();
+            case "B":
+                return new ConcreteProductB();
+            default:
+                return null;
         }
     }
 
