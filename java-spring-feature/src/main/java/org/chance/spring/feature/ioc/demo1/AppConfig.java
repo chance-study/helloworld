@@ -1,4 +1,4 @@
-package org.chance.spring.feature.ioc;
+package org.chance.spring.feature.ioc.demo1;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

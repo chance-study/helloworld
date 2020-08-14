@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @date 2020-07-24 14:45:14
  */
 // 此处记得排除掉@Controller和@ControllerAdvice、@RestControllerAdvice
-@ComponentScan(value = "org.chance.spring.feature.ioc", useDefaultFilters = false,
+@ComponentScan(value = "org.chance.spring.feature.mvc", useDefaultFilters = false,
         includeFilters = {@ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Controller.class, ControllerAdvice.class, RestControllerAdvice.class})}
 )
 @Configuration //最好标注上，本人亲测若不标准，可能扫描不生效

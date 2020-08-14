@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 
 // 备注：此处@ControllerAdvice、RestControllerAdvice 这个注解不要忘了，属于Controller层处理全局异常的，应该交给web去扫描
-@ComponentScan(value = "org.chance.spring.feature.ioc", excludeFilters = {
+@ComponentScan(value = "org.chance.spring.feature.mvc", excludeFilters = {
         @ComponentScan.Filter(type = FilterType.ANNOTATION, classes = {Controller.class, ControllerAdvice.class, RestControllerAdvice.class})
 })
 @Configuration //最好标注上，本人亲测若不标准，可能扫描不生效

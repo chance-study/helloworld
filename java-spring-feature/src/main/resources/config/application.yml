@@ -4,3 +4,6 @@ logging:
       hibernate:
         # 把SpringBoot的Hibernate的debug信息打开
         SQL: debug
+spring:
+  main:
+    allow-bean-definition-overriding: false # 禁用Bean覆盖
