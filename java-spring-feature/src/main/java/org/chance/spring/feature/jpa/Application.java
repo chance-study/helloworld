@@ -6,6 +6,11 @@ import org.springframework.boot.autoconfigure.flyway.FlywayAutoConfiguration;
 import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 
 /**
+ * JPA自动配置类(无需EnableJpaRepositories、EntityScan)：<code>@JpaRepositoriesAutoConfiguration</code>
+ * <p>
+ * 扫描repository: <code>@EnableJpaRepositories(basePackages = "org.chance.spring.feature.jpa")</code>
+ * 扫描entity: <code>@EntityScan(basePackages = "org.chance.spring.feature.jpa")</code>
+ *
  * @author GengChao &lt;catchance@163.com&gt;
  * @date 2020-08-12 17:11:01
  */

@@ -1,0 +1,7 @@
+# 引入jpa配置
+spring:
+  profiles:
+    include: jpa
+# 配置 mybatis xml文件的路径 classpath*:/的表示扫描所有jar包下
+mybatis:
+  mapper-locations: classpath:org/chance/spring/feature/mybatis/*.xml
