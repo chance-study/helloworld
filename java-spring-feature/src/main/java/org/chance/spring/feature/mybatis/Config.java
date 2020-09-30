@@ -35,11 +35,11 @@ public class Config {
      * @param dataSource
      * @return
      */
-    @Bean
-    public SqlSessionFactoryBean getSqlSessionFactoryBean(DataSource dataSource) {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setDataSource(dataSource);
-        return sqlSessionFactoryBean;
-    }
+//    @Bean
+//    public SqlSessionFactoryBean getSqlSessionFactoryBean(DataSource dataSource) {
+//        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+//        sqlSessionFactoryBean.setDataSource(dataSource);
+//        return sqlSessionFactoryBean;
+//    }
 
 }
