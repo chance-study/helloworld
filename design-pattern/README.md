@@ -51,6 +51,7 @@
 ### 应用场景示例
 - [消灭成堆的分支语句之类责任链模式](https://my.oschina.net/redraiment/blog/105209)
 ### 命令模式(Command)
+- [GOF23设计模式之命令模式（command）](https://www.cnblogs.com/cao-lei/p/8328972.html)
 ### 解释器模式(Interpreter)
 ### 迭代器模式(Iterator)
 ### 中介者模式(Mediator)
